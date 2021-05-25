@@ -1,4 +1,4 @@
-# cuex
+# vuex
 
 ## Project setup
 ```
