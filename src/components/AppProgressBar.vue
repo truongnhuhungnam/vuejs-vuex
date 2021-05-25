@@ -7,15 +7,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
     computed: {
-        progress() {
-            return Math.round(
-                (this.$store.state.todos.filter(todo => todo.completed).length /
-                    this.$store.state.todos.length) *
-                    100
-            )
-        },
+        ...mapGetters(['progress']),
     },
 }
 </script>

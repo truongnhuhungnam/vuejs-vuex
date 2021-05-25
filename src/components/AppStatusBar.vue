@@ -10,11 +10,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
     computed: {
-        doneTodos() {
-            return this.$store.state.todos.filter(todo => todo.completed)
-        },
+        ...mapGetters(['doneTodos']),
     },
 }
 </script>
