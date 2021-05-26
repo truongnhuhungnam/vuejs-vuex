@@ -26,6 +26,11 @@ const storeData = {
                 title: 'Title4',
                 completed: false,
             },
+            {
+                id: 5,
+                title: 'Title4',
+                completed: false,
+            },
         ],
         auth: {
             isAuthenticated: false,
@@ -49,6 +54,14 @@ const storeData = {
                 }
                 return todo
             })
+        },
+        DELETE_TODO(state, todoId) {
+            state.todos = state.todos.filter(todo => todo.id !== todoId)
+        },
+    },
+    actions: {
+        deleteTodo({ commit }, todoId) {
+            commit('DELETE_TODO', todoId)
         },
     },
 }

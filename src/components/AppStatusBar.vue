@@ -1,6 +1,6 @@
 <template>
-    <div class="">
-        <p>Done</p>
+    <div v-if="auth.isAuthenticated" class="text-center">
+        <p>List Task Done</p>
         <ul>
             <li v-for="todo in doneTodos" :key="todo.id">
                 {{ todo.title }}
@@ -10,10 +10,11 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 export default {
     computed: {
         ...mapGetters(['doneTodos']),
+        ...mapState(['auth']),
     },
 }
 </script>

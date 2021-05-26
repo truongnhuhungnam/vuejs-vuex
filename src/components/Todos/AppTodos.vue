@@ -4,7 +4,7 @@
             <li
                 v-for="todo in todos"
                 :key="todo.id"
-                class="border-2 border-purple-400 my-2 p-2"
+                class="border-2 border-purple-400 my-2 p-2 flex justify-between"
                 :class="todo.completed ? 'bg-purple-300' : ''"
             >
                 <label class="cursor-pointer">
@@ -18,6 +18,12 @@
                         todo.title
                     }}</span>
                 </label>
+                <button
+                    @click="deleteTodo(todo.id)"
+                    class="text-white bg-red-400 px-3 py-1 transition-all hover:bg-red-600"
+                >
+                    Delete
+                </button>
             </li>
         </ul>
         <p v-else class="text-2xl text-center">No authorised!</p>
@@ -25,13 +31,14 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex'
+import { mapMutations, mapState, mapActions } from 'vuex'
 export default {
     computed: {
         ...mapState(['todos', 'auth']),
     },
     methods: {
         ...mapMutations(['TOGGLE_COMPLETED']),
+        ...mapActions(['deleteTodo']),
     },
 }
 </script>
