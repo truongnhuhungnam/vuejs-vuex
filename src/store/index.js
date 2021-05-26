@@ -38,6 +38,19 @@ const storeData = {
             return Math.round((doneTodos.length / state.todos.length) * 100)
         },
     },
+    mutations: {
+        TOGGLE_AUTH(state) {
+            state.auth.isAuthenticated = !state.auth.isAuthenticated
+        },
+        TOGGLE_COMPLETED(state, todoId) {
+            state.todos.map(todo => {
+                if (todo.id === todoId) {
+                    todo.completed = !todo.completed
+                }
+                return todo
+            })
+        },
+    },
 }
 
 const store = new Vuex.Store(storeData)
