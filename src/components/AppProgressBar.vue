@@ -1,6 +1,6 @@
 <template>
     <div v-if="auth.isAuthenticated">
-        <p class="text-white bg-green-300 text-center py-1">
+        <p class="text-white bg-green-400 text-center py-1">
             Progress: {{ progress }}%
         </p>
     </div>

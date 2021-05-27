@@ -1,3 +1,4 @@
+import axios from 'axios'
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -5,33 +6,7 @@ Vue.use(Vuex)
 
 const storeData = {
     state: {
-        todos: [
-            {
-                id: 1,
-                title: 'Title1',
-                completed: true,
-            },
-            {
-                id: 2,
-                title: 'Title2',
-                completed: false,
-            },
-            {
-                id: 3,
-                title: 'Title3',
-                completed: true,
-            },
-            {
-                id: 4,
-                title: 'Title4',
-                completed: false,
-            },
-            {
-                id: 5,
-                title: 'Title4',
-                completed: false,
-            },
-        ],
+        todos: [],
         auth: {
             isAuthenticated: false,
         },
@@ -55,13 +30,48 @@ const storeData = {
                 return todo
             })
         },
+        ADD_TODO(state, newTodo) {
+            state.todos.unshift(newTodo)
+        },
+
         DELETE_TODO(state, todoId) {
             state.todos = state.todos.filter(todo => todo.id !== todoId)
         },
+        SET_TODOS(state, todos) {
+            state.todos = todos
+        },
     },
     actions: {
-        deleteTodo({ commit }, todoId) {
-            commit('DELETE_TODO', todoId)
+        async deleteTodo({ commit }, todoId) {
+            try {
+                await axios.delete(
+                    `https://60a8d18120a6410017306479.mockapi.io/todos/${todoId}`
+                )
+                commit('DELETE_TODO', todoId)
+            } catch (err) {
+                console.log(err)
+            }
+        },
+        async addTodo({ commit }, newTodo) {
+            try {
+                await axios.post(
+                    'https://60a8d18120a6410017306479.mockapi.io/todos',
+                    newTodo
+                )
+                commit('ADD_TODO', newTodo)
+            } catch (err) {
+                console.log(err)
+            }
+        },
+        async getTodos({ commit }) {
+            try {
+                const res = await axios.get(
+                    'https://60a8d18120a6410017306479.mockapi.io/todos'
+                )
+                commit('SET_TODOS', res.data)
+            } catch (err) {
+                console.log(err)
+            }
         },
     },
 }
