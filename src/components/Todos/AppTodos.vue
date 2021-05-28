@@ -1,7 +1,7 @@
 <template>
     <div>
-        <FormTodos v-if="auth.isAuthenticated" />
-        <ul v-if="auth.isAuthenticated">
+        <FormTodos v-if="isAuthenticated" />
+        <ul v-if="isAuthenticated">
             <li
                 v-for="todo in todos"
                 :key="todo.id"
@@ -32,12 +32,12 @@
 </template>
 
 <script>
-import { mapMutations, mapState, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 import FormTodos from './FormTodos'
 export default {
     components: { FormTodos },
     computed: {
-        ...mapState(['todos', 'auth']),
+        ...mapGetters(['todos', 'isAuthenticated']),
     },
     methods: {
         ...mapMutations(['TOGGLE_COMPLETED']),

@@ -19,7 +19,7 @@
                 </li>
                 <li
                     class="text-lg inline-block px-4 py-2"
-                    v-if="auth.isAuthenticated"
+                    v-if="isAuthenticated"
                 >
                     Total todos: {{ todos.length }}
                     <a href="javascript:void(0);" @click="TOGGLE_AUTH"
@@ -38,10 +38,10 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 export default {
     computed: {
-        ...mapState(['todos', 'auth']),
+        ...mapGetters(['todos', 'isAuthenticated']),
     },
     methods: {
         ...mapMutations(['TOGGLE_AUTH']),

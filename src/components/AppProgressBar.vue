@@ -1,5 +1,5 @@
 <template>
-    <div v-if="auth.isAuthenticated">
+    <div v-if="isAuthenticated">
         <p class="text-white bg-green-400 text-center py-1">
             Progress: {{ progress }}%
         </p>
@@ -7,11 +7,10 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
     computed: {
-        ...mapGetters(['progress']),
-        ...mapState(['auth']),
+        ...mapGetters(['todos', 'progress', 'isAuthenticated']),
     },
 }
 </script>
