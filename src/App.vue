@@ -1,6 +1,7 @@
 <template>
     <div>
         <TheHeader />
+        <router-view />
         <div class="w-1/2 mx-auto py-6">
             <AppTodos />
             <AppStatusBar />
